@@ -47,13 +47,18 @@ let add = (mixedArr) => {
     for(let i=0; i<mixedArr.length; i++)
     {
       if(typeof(mixedArr[i])=="string"){
-        mixedArr[i] = mixedArr[i].length;
+        total += mixedArr[i].length;
       }
-      if(typeof(mixedArr[i])=="object"){
-        //I DONT GET THIS, NOT WORKING
-        throw "its an object/array";
+      else if(typeof(mixedArr[i])=="boolean"){
+        total += mixedArr[i];
       }
-      total += mixedArr[i];
+      else if(typeof(mixedArr[i])=="number"){
+        total += mixedArr[i];
+      }
+      else
+      {
+        throw Error("Unsupported data type sir or ma'am");
+      }
     }
   }
   return total;
@@ -80,17 +85,7 @@ let averageWordLength = (wordsArr) => {
 }
 //4.3 mixed array
 function avg (mixedArr) {
-  let total = 0;
-    mixedArr.forEach(element => {
-      if(typeof(element)=="string")
-      {
-          total += element.length;
-      }
-        else    
-        {
-            total += element;
-        }
-    });
+    let total = add(mixedArr);
     return mixedArr.length == 0 ? null : total/mixedArr.length;
 }
 // Progression #5: Unique arrays
@@ -108,19 +103,25 @@ const wordsUnique = [
   'egg',
   'flour'
 ];
-
+function uniqueArray ()
+{
+  
+}
 // Progression #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 function searchElement(wordsFind, value){
-  for(let i=0; i<wordsFind.length; i++)
+  if(wordsFind.length==0)
   {
-    if(wordsFind.length==0)
+    return null;
+  }
+  else
+  {
+    for(let i=0; i<wordsFind.length; i++)
     {
-      return null;
-    }
-    else if(wordsFind[i]==value)
-    {
+      if(wordsFind[i]==value)
+      {
       return true;
+      }
     }
   }
 }
@@ -163,3 +164,7 @@ const matrix = [
   [24, 55, 58, 05, 66, 73, 99, 26, 97, 17],
   [21, 36, 23, 09, 75, 00, 76, 44, 20, 45]
 ];
+function maximumProduct (matrix)
+{
+  
+}
